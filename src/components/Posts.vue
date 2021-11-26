@@ -19,7 +19,7 @@
           <button @click="editPost(postToEdit)" class="addPost">
             Edit Post
           </button>
-          <button class="addPost" style="padding: 0" @click="exitForm">
+          <button class="addPost" style="padding: 3px" @click="exitForm">
             Cancel
           </button>
         </div>
@@ -52,20 +52,28 @@
           </button>
         </div>
 
-        <div v-if="comments.length">
-          <div v-for="comment of comments" :key="comment.id">
-            <div v-if="post.id === comment.postId" class="comments">
+        <template v-if="comments.length">
+          <template v-for="comment of comments">
+            <div
+              v-if="post.id === comment.postId"
+              class="comments"
+              :key="comment.id"
+            >
               <div class="comment-by">Commented: {{ comment.email }}</div>
               <div class="comment-content">{{ comment.body }}</div>
             </div>
-          </div>
-        </div>
+          </template>
+        </template>
       </div>
     </div>
-    <div v-if="isFiltered">
+    <template v-if="isFiltered">
       <div class="btn from-left" @click="goBack">Back to all posts!</div>
-    </div>
-    <div v-if="!isFiltered" class="btn from-left" @click="val += 12">
+    </template>
+    <div
+      v-if="!isFiltered && val <= filteredPosts.length"
+      class="btn from-left"
+      @click="val += 12"
+    >
       See more
     </div>
   </div>
@@ -75,7 +83,7 @@
 export default {
   data() {
     return {
-      isFiltered: false,
+      //   isFiltered: false,
       val: 12,
       userIdFilter: null,
       forEditing: false,
@@ -91,14 +99,14 @@ export default {
   methods: {
     filterByUser(id) {
       this.userIdFilter = id;
-      this.isFiltered = true;
+      // this.isFiltered = true;
     },
     async deletePost(post) {
       this.$store.dispatch("deletePost", post);
     },
     goBack() {
       this.userIdFilter = null;
-      this.isFiltered = false;
+      //this.isFiltered = false;
     },
     seeComments(id) {
       if (this.currentCommentId == null) {
@@ -143,6 +151,9 @@ export default {
     },
     comments() {
       return this.$store.getters.allComents;
+    },
+    isFiltered() {
+      return this.userIdFilter != null;
     },
   },
 };
@@ -368,10 +379,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: flex-end;
+  align-items: flex-start;
   height: auto;
   line-height: 20px;
   font-size: 14px;
+  padding: 0 3px;
 }
 
 .comment-by {
@@ -453,6 +465,9 @@ body {
   background-color: rgba(179, 163, 167, 0.219);
 }
 .delete {
+  color: rgba(187, 11, 11, 0.486);
+}
+.delete:hover {
   background-color: rgba(187, 11, 11, 0.486);
   color: white;
 }

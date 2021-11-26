@@ -15,6 +15,10 @@ const routes = [
     path: '/addnew',
     name: 'Add New',
     component: NewPost
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 

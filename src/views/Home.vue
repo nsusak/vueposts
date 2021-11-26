@@ -13,9 +13,5 @@ export default {
   components: {
     Posts,
   },
-  data() {
-    return {};
-  },
-  mounted() {},
 };
 </script>

@@ -59,16 +59,11 @@ export default {
         .then((response) => response.json())
         .then((json) => json);
       this.$store.dispatch("addNewPost", newData);
-      this.post = {};
       //redirects to home page, new post added to the end, filter by userID 1
       this.$router.push({ name: "Home" });
     },
   },
-  computed: {
-    newPost() {
-      return this.$store.getters.newPost;
-    },
-  },
+  computed: {},
 };
 </script>
 
