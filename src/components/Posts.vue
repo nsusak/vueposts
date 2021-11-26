@@ -101,7 +101,7 @@ export default {
       this.userIdFilter = id;
       // this.isFiltered = true;
     },
-    async deletePost(post) {
+    deletePost(post) {
       this.$store.dispatch("deletePost", post);
     },
     goBack() {
@@ -470,5 +470,41 @@ body {
 .delete:hover {
   background-color: rgba(187, 11, 11, 0.486);
   color: white;
+}
+
+@media (max-width: 900px) {
+  .post {
+    min-width: 100%;
+  }
+
+  .form {
+    width: 100%;
+    margin: auto;
+  }
+
+  .editform {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 1300px) and (min-width: 900px) {
+  .post {
+    min-width: 50%;
+  }
+
+  .form {
+    width: 100%;
+    margin: auto;
+  }
+
+  .editform {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin-left: 60px;
+  }
 }
 </style>

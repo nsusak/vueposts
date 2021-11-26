@@ -1,26 +1,28 @@
 <template>
   <div class="">
     <h1>Add new post</h1>
-    <div class="form">
-      <div class="input input-title">
-        <!-- <label for="post-title">Enter a post title</label> -->
-        <input
-          v-model="post.postTitle"
-          type="email"
-          id="post-title"
-          placeholder="Enter a post title"
-        />
+    <div class="editform">
+      <div class="form">
+        <div class="input input-title">
+          <!-- <label for="post-title">Enter a post title</label> -->
+          <input
+            v-model="post.postTitle"
+            type="email"
+            id="post-title"
+            placeholder="Enter a post title"
+          />
+        </div>
+        <div class="input">
+          <!-- <label for="post-body">Content</label> -->
+          <textarea
+            v-model="post.postBody"
+            id="post-body"
+            rows="25"
+            placeholder="Enter your content"
+          ></textarea>
+        </div>
+        <button class="addPost" @click="addPost">Add Post</button>
       </div>
-      <div class="input">
-        <!-- <label for="post-body">Content</label> -->
-        <textarea
-          v-model="post.postBody"
-          id="post-body"
-          rows="25"
-          placeholder="Enter your content"
-        ></textarea>
-      </div>
-      <button class="addPost" @click="addPost">Add Post</button>
     </div>
   </div>
 </template>
